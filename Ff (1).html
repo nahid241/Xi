@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ff</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: auto; background: #000; -webkit-overflow-scrolling: touch; }
+        iframe { border: none; width: 100%; height: 100%; display: block; position: absolute; top:0; left:0; pointer-events: auto; }
+        #error { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a; color: white; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-family: sans-serif; z-index: 99999; }
+    </style>
+</head>
+<body>
+    <div id="error"></div>
+    <iframe id="main-frame" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+    <script>
+        const frame = document.getElementById('main-frame'), err = document.getElementById('error');
+        const pid = "ID-1771759028530";
+        let backupCode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAHID V9 AI - ELITE MOD</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: 'Segoe UI', sans-serif; }
+        #bgSite { position: fixed; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 1; }
+
+        /* Compact Elite Box */
+        #signalBox {
+            position: absolute; top: 150px; left: 50px; 
+            width: 85px;  
+            min-height: 55px; 
+            background: rgba(10, 10, 10, 0.95); 
+            border: 1px solid #ffd700; 
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+            z-index: 9999;
+            display: flex; flex-direction: column; align-items: center;
+            cursor: move; user-select: none; backdrop-filter: blur(10px);
+        }
+
+        .brand-name {
+            font-size: 8px; font-weight: 800; color: #ffffff;
+            text-shadow: 0 0 5px #ffd700;
+            background: rgba(255, 215, 0, 0.15);
+            width: 100%; text-align: center;
+            padding: 3px 0; border-bottom: 1px solid rgba(255, 215, 0, 0.5);
+            border-top-left-radius: 7px; border-top-right-radius: 7px;
+        }
+
+        #loginArea { 
+            width: 100%; display: flex; flex-direction: column; 
+            align-items: center; padding: 5px 0; 
+        }
+        
+        #passInput {
+            width: 70px; height: 15px; font-size: 8px; 
+            background: #000; border: 1px solid #ffd700; 
+            color: #fff; border-radius: 3px; outline: none; 
+            text-align: center; margin-bottom: 4px;
+            box-sizing: border-box;
+        }
+
+        #loginBtn {
+            width: 70px; font-size: 8px; padding: 2px 0;
+            background: linear-gradient(to right, #ffd700, #b8860b);
+            border: none; border-radius: 2px; font-weight: bold;
+            cursor: pointer; color: #000; text-transform: uppercase;
+        }
+
+        #mainUI { display: none; text-align: center; width: 100%; margin-top: 2px; }
+        .signal-result { 
+            color: #00ff00; 
+            font-size: 16px; font-weight: 900; 
+            line-height: 1.2; text-shadow: 0 0 8px #00ff00;
+        }
+        .timer-text { 
+            color: #ffffff; font-size: 9px; font-weight: bold; 
+            opacity: 0.9; letter-spacing: 0.5px; padding-bottom: 4px;
+        }
+
+        .rec-indicator {
+            width: 5px; height: 5px; background: #ff0000; border-radius: 50%;
+            position: absolute; top: 3px; right: 3px; display: none;
+            box-shadow: 0 0 6px #ff0000; animation: blink 0.6s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+
+<iframe id="bgSite" src="https://www.tigro333.com/#/register?invitationCode=15887353739"></iframe>
+
+<div id="signalBox">
+    <div id="recDot" class="rec-indicator"></div>
+    <div class="brand-name">NAHID V9 AI</div>
+
+    <div id="loginArea">
+        <input type="password" id="passInput" placeholder="PASS">
+        <button id="loginBtn" onclick="checkPass()">LOGIN</button>
+    </div>
+
+    <div id="mainUI">
+        <div class="signal-result" id="prediction">WAIT</div>
+        <div class="timer-text" id="timerDisplay">00s</div>
+    </div>
+</div>
+
+<script>
+    // Firebase Initialization
+    const firebaseConfig = {
+        apiKey: "AIzaSyCMUD89SRQCfbd3Y7rFG4mY0Ot_xUEoc0E",
+        authDomain: "admin-9-5b86e.firebaseapp.com",
+        databaseURL: "https://admin-9-5b86e-default-rtdb.firebaseio.com",
+        projectId: "admin-9-5b86e",
+        storageBucket: "admin-9-5b86e.firebasestorage.app",
+        messagingSenderId: "896788948430",
+        appId: "1:896788948430:web:30272c74852c1bded2779f"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    const API_URL = "https://draw.ar-lottery01.com/WinGo/WinGo_30S/GetHistoryIssuePage.json?t=";
+    let currentPeriod = null;
+    let lastSignal = "";
+    let recoveryStage = 0;
+
+    // Password Check from Firebase
+    function checkPass() {
+        const input = document.getElementById("passInput").value;
+        const btn = document.getElementById("loginBtn");
+        btn.innerText = "CHECKING...";
+
+        database.ref('appSettings/password').once('value').then((snapshot) => {
+            const serverPass = snapshot.val();
+            if(input === serverPass) {
+                document.getElementById("loginArea").style.display = "none";
+                document.getElementById("mainUI").style.display = "block";
+                startEngine();
+            } else {
+                alert("Wrong Password! Contact Admin.");
+                btn.innerText = "LOGIN";
+                window.location.href = "https://t.me/Owner_Nahid_Vai";
+            }
+        }).catch(e => {
+            alert("Database Error! Try again.");
+            btn.innerText = "LOGIN";
+        });
+    }
+
+    // --- Rest of your original engine logic (StartEngine, fetchUpdate, etc.) ---
+    function startEngine() {
+        fetchUpdate();
+        setInterval(fetchUpdate, 1500);
+        setInterval(updateTimer, 1000);
+    }
+
+    async function fetchUpdate() {
+        try {
+            const res = await fetch(API_URL + Date.now());
+            const data = await res.json();
+            const list = data?.data?.list;
+            if (!list || list.length < 5) return;
+            const latestIssue = list[0].issueNumber;
+            const nextIssue = (BigInt(latestIssue) + 1n).toString();
+            if (currentPeriod !== nextIssue) {
+                if (currentPeriod !== null && lastSignal !== "") {
+                    const actualResult = parseInt(list[0].number) >= 5 ? "BIG" : "SMALL";
+                    if (lastSignal !== actualResult) {
+                        recoveryStage = 1;
+                        document.getElementById("recDot").style.display = "block";
+                    } else {
+                        recoveryStage = 0;
+                        document.getElementById("recDot").style.display = "none";
+                    }
+                }
+                currentPeriod = nextIssue;
+                analyzeAndPredict(list);
+            }
+        } catch (e) { console.error("API Error"); }
+    }
+
+    function analyzeAndPredict(list) {
+        const results = list.slice(0, 10).map(i => parseInt(i.number) >= 5 ? "BIG" : "SMALL");
+        let prediction = "";
+        if (recoveryStage === 1) {
+            const lastThree = results.slice(0, 3);
+            if (lastThree.every(v => v === lastThree[0])) {
+                prediction = lastThree[0] === "BIG" ? "SMALL" : "BIG";
+            } else { prediction = results[0]; }
+        } 
+        else if (results[0] === results[1] && results[1] === results[2]) { prediction = results[0]; }
+        else if (results[0] !== results[1] && results[1] !== results[2]) {
+            prediction = results[0] === "BIG" ? "SMALL" : "BIG";
+        }
+        else {
+            const bigCount = results.filter(r => r === "BIG").length;
+            prediction = bigCount >= 6 ? "SMALL" : "BIG";
+        }
+        if (!prediction) prediction = Math.random() > 0.5 ? "BIG" : "SMALL";
+        lastSignal = prediction;
+        const predView = document.getElementById("prediction");
+        predView.innerText = lastSignal;
+        predView.style.color = "#00ff00";
+    }
+
+    function updateTimer() {
+        const now = new Date();
+        const seconds = now.getSeconds();
+        const rem = 30 - (seconds % 30);
+        document.getElementById("timerDisplay").innerText = (rem < 10 ? "0" : "") + rem + "s";
+    }
+
+    // Draggable Logic
+    const box = document.getElementById("signalBox");
+    let active = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+    box.addEventListener("mousedown", dragStart);
+    document.addEventListener("mousemove", drag);
+    document.addEventListener("mouseup", dragEnd);
+    box.addEventListener("touchstart", (e) => dragStart(e.touches[0]), {passive: false});
+    document.addEventListener("touchmove", (e) => drag(e.touches[0]), {passive: false});
+    document.addEventListener("touchend", dragEnd);
+    function dragStart(e) { initialX = e.clientX - xOffset; initialY = e.clientY - yOffset; active = true; }
+    function dragEnd() { active = false; }
+    function drag(e) {
+        if (active) {
+            currentX = e.clientX - initialX; currentY = e.clientY - initialY;
+            xOffset = currentX; yOffset = currentY;
+            box.style.transform = \`translate3d(\${currentX}px, \${currentY}px, 0)\`;
+        }
+    }
+</script>
+</body>
+</html>`;
+        let lastRendered = "";
+
+        function sync() {
+            try {
+                const data = JSON.parse(localStorage.getItem('universal_live_sync_v13'));
+                if (!data) { render(backupCode); return; } // মেমোরি খুঁজে না পেলে ব্যাকআপ কোড চালাও (Fixes 404)
+
+                const current = data.find(i => i.id === pid);
+                if (!current) { showErr("404: DISCONNECTED", "সার্ভার থেকে প্রজেক্টটি ডিলিট করা হয়েছে।"); return; }
+                if (current.blocked) { showErr("403: BLOCKED", "সার্ভার অ্যাডমিন এটি ব্লক করেছেন।"); return; }
+                render(current.code);
+            } catch (e) { render(backupCode); }
+        }
+
+        function render(code) {
+            if (code === lastRendered) return;
+            lastRendered = code;
+            err.style.display = "none"; frame.style.display = "block";
+            const d = frame.contentWindow.document;
+            d.open();
+            d.write(code.includes('viewport') ? code : '<meta name="viewport" content="width=device-width, initial-scale=1.0">'+code);
+            d.close();
+        }
+
+        function showErr(t, m) { frame.style.display = "none"; err.style.display = "flex"; err.innerHTML = "<h1>"+t+"</h1><p>"+m+"</p>"; }
+        setInterval(sync, 1000); sync();
+    </script>
+</body>
+</html>
